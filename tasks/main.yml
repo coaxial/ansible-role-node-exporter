@@ -25,6 +25,13 @@
     mode: '0755'
   notify: delete extracted file
 
+- name: jfadklflksa
+  command: "ls -clash /tmp"
+  when: true
+- name: fjsdlkglf
+  command: "ls -clash /tmp/node_exporter-0.16.0.linux-amd64"
+  when: true
+
 - name: Copy node exporter in place
   copy:
     src: "/tmp/node_exporter-{{ ne__pkg_version }}.linux-amd64"
