@@ -12,3 +12,10 @@ def test_hosts_file(host):
     assert f.exists
     assert f.user == 'root'
     assert f.group == 'root'
+
+
+def test_node_exporter_running(host):
+    s = host.service("node_exporter")
+
+    assert s.is_running
+    assert s.is_enabled
