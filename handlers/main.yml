@@ -1,2 +1,17 @@
 ---
-# handlers file for ansible-role-node-exporter
+# Inspired from https://github.com/bdellegrazie/ansible-role-node_exporter
+- name: install service
+  template:
+    src: "node_exporter.systemd.j2"
+    dest: "/lib/systemd/system/node_exporter.service"
+    owner: root
+    group: root
+    mode: '0522'
+  notify:
+    - restart service
+
+- name: restart service
+  service:
+    name: node_exporter
+    state: restarted
+    enabled: true
