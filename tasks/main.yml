@@ -9,6 +9,11 @@
     - restart service
     - delete tar
 
+- name: Create destination dir
+  file:
+    path: "{{ ne__exporter_dir }}"
+    state: directory
+
 - name: Extract node exporter
   unarchive:
     src: /tmp/node_exporter.tar.gz
