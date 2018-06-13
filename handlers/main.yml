@@ -15,3 +15,8 @@
     name: node_exporter
     state: restarted
     enabled: true
+
+- name: delete tar
+  file:
+    path: /tmp/node_exporter.tar.gz
+    state: absent

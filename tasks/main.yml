@@ -3,15 +3,16 @@
   get_url:
     checksum: "{{ ne__pkg_checksum }}"
     dest: /tmp/node_exporter.tar.gz
-    force: true
     url: https://github.com/prometheus/node_exporter/releases/download/v{{ ne__pkg_version }}/node_exporter-{{ ne__pkg_version }}.linux-amd64.tar.gz
   notify:
     - install service
     - restart service
+    - delete tar
 
 - name: Extract node exporter
   unarchive:
     src: /tmp/node_exporter.tar.gz
+    remote_src: true
     dest: "{{ ne__exporter_dir }}/node_exporter"
     creates: "{{ ne__exporter_dir }}/node_exporter"
     owner: root
