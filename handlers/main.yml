@@ -22,11 +22,12 @@
   tags:
     - skip_ansible_lint
 
-- name: restart service
-  service:
+- name: reload service
+  systemd:
+    daemon_reload: true
     name: node_exporter
-    state: restarted
     enabled: true
+    state: restarted
 
 - name: cleanup
   file:
