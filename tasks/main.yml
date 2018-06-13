@@ -37,3 +37,4 @@
   user:
     name: node_exporter
     system: true
+    state: present
