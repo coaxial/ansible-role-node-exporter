@@ -34,17 +34,6 @@
     group: root
     mode: '0755'
 
-- name: debug
-  command: "ls -clash {{ ne__exporter_dir }}"
-  tags:
-    - skip_ansible_lint
-
-- name: debug
-  command: systemctl status node_exporter
-  changed_when: false
-  tags:
-    - skip_ansible_lint
-
 - name: Create service user
   user:
     name: node_exporter
