@@ -16,12 +16,10 @@
     state: restarted
     enabled: true
 
-- name: delete tar
+- name: cleanup
   file:
-    path: /tmp/node_exporter.tar.gz
+    path: "{{ item }}"
     state: absent
-
-- name: delete extracted file
-  file:
-    path: "/tmp/node_exporter-{{ ne__pkg_version }}.linux-amd64"
-    state: absent
+  with_items:
+    - "/tmp/node_exporter-{{ ne__pkg_version }}.linux-amd64"
+    - /tmp/node_exporter.tar.gz

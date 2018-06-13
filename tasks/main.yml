@@ -7,7 +7,7 @@
   notify:
     - install service
     - restart service
-    - delete tar
+    - cleanup
 
 - name: Create destination dir
   file:
@@ -23,20 +23,13 @@
     owner: root
     group: root
     mode: '0755'
-  notify: delete extracted file
-
-- name: jfadklflksa
-  command: "ls -clash /tmp"
-  when: true
-- name: fjsdlkglf
-  command: "ls -clash /tmp/node_exporter-0.16.0.linux-amd64"
-  when: true
+  notify: cleanup
 
 - name: Copy node exporter in place
   copy:
-    src: "/tmp/node_exporter-{{ ne__pkg_version }}.linux-amd64"
+    src: "/tmp/node_exporter-{{ ne__pkg_version }}.linux-amd64/node_exporter"
     remote_src: true
-    dest: "{{ ne__exporter_dir }}/node_exporter"
+    dest: "{{ ne__exporter_dir }}"
     owner: root
     group: root
     mode: '0755'
