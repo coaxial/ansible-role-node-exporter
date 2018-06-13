@@ -34,8 +34,7 @@
     group: root
     mode: '0755'
 
-- name: Enable service
-  service:
+- name: Create service user
+  user:
     name: node_exporter
-    enabled: true
-    state: started
+    system: true

@@ -4,10 +4,10 @@ Documentation=https://github.com/prometheus/node_exporter
 After=network.target
 
 [Service]
-User={{ node_exporter_user }}
-Group={{ node_exporter_group }}
-EnvironmentFile={{ node_exporter_config_file }}
-ExecStart={{ node_exporter_program }} $OPTIONS
+User=node_exporter
+Group=node_exporter
+EnvironmentFile=/etc/default/node_exporter
+ExecStart={{ ne__exporter_dir }}/node_exporter $OPTIONS
 
 SyslogIdentifier=node_exporter
 Restart=always
