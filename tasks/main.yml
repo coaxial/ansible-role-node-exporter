@@ -28,6 +28,7 @@
 - name: Copy node exporter in place
   copy:
     src: "/tmp/node_exporter-{{ ne__pkg_version }}.linux-amd64"
+    remote_src: true
     dest: "{{ ne__exporter_dir }}"
     owner: root
     group: root
