@@ -23,5 +23,5 @@
 
 - name: delete extracted file
   file:
-    path: /tmp/node_exporter
+    path: "/tmp/node_exporter-{{ ne__pkg_version }}.linux-amd64"
     state: absent
