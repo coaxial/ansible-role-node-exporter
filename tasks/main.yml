@@ -19,7 +19,7 @@
     src: /tmp/node_exporter.tar.gz
     remote_src: true
     dest: /tmp
-    creates: "/tmp/node_exporter-{{ ne__pkg_version }}.linux-amd64"
+    creates: /tmp/node_exporter
     owner: root
     group: root
     mode: '0755'
@@ -27,7 +27,7 @@
 
 - name: Copy node exporter in place
   copy:
-    src: "/tmp/node_exporter-{{ ne__pkg_version }}.linux-amd64"
+    src: /tmp/node_exporter
     remote_src: true
     dest: "{{ ne__exporter_dir }}"
     owner: root
