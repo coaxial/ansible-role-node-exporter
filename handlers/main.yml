@@ -7,15 +7,14 @@
     owner: root
     group: root
     mode: '0522'
-  notify:
-    - start service
 
-- name: start service
+- name: restart service
   systemd:
     daemon_reload: true
     name: node_exporter
     enabled: true
     state: started
+  listen: install service
 
 - name: cleanup
   file:
