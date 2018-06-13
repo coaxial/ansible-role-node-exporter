@@ -35,8 +35,9 @@
     mode: '0755'
 
 - name: debug
-  command: journalctl -xe
-  changed_when: false
+  command: "ls -clash {{ ne__exporter_dir }}"
+  tags:
+    - skip_ansible_lint
 
 - name: debug
   command: systemctl status node_exporter
