@@ -13,7 +13,7 @@ jobs:
         - pip install docker-py
         - pip install molecule
       script:
-        - molecule --debug test
+        - molecule test
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
