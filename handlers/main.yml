@@ -10,6 +10,18 @@
   notify:
     - restart service
 
+- command: journalctl -xe
+  ignore_errors: true
+  listen: restart service
+  tags:
+    - skip_ansible_lint
+
+- command: systemctl status node_exporter.service
+  ignore_errors: true
+  listen: restart service
+  tags:
+    - skip_ansible_lint
+
 - name: restart service
   service:
     name: node_exporter
