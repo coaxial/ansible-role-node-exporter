@@ -6,7 +6,6 @@
     url: https://github.com/prometheus/node_exporter/releases/download/v{{ ne__pkg_version }}/node_exporter-{{ ne__pkg_version }}.linux-amd64.tar.gz
   notify:
     - install service
-    - restart service
     - cleanup
 
 - name: Create destination dir

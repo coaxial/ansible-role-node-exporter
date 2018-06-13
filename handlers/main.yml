@@ -2,32 +2,32 @@
 # Inspired from https://github.com/bdellegrazie/ansible-role-node_exporter
 - name: install service
   template:
-    src: "node_exporter.systemd.j2"
-    dest: "/lib/systemd/system/node_exporter.service"
+    src: node_exporter.systemd.j2
+    dest: /lib/systemd/system/node_exporter.service
     owner: root
     group: root
     mode: '0522'
   notify:
-    - restart service
+    - start service
 
-- command: journalctl -xe
-  ignore_errors: true
-  listen: restart service
-  tags:
-    - skip_ansible_lint
+# - command: journalctl -xe
+#   ignore_errors: true
+#   listen: restart service
+#   tags:
+#     - skip_ansible_lint
 
-- command: systemctl status node_exporter.service
-  ignore_errors: true
-  listen: restart service
-  tags:
-    - skip_ansible_lint
+# - command: systemctl status node_exporter.service
+#   ignore_errors: true
+#   listen: restart service
+#   tags:
+#     - skip_ansible_lint
 
-- name: reload service
+- name: start service
   systemd:
     daemon_reload: true
     name: node_exporter
     enabled: true
-    state: restarted
+    state: started
 
 - name: cleanup
   file:
