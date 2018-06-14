@@ -22,6 +22,7 @@ def test_node_exporter_running(host):
 
 
 def test_metrics_endpoint(host):
+    host.run('sudo apt install curl -yq')
     metrics = host.check_output('curl -sfL http://localhost:9100/metrics')
 
     assert 'go_gc_duration_seconds_sum' in metrics
