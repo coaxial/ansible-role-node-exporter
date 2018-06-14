@@ -8,7 +8,10 @@ galaxy_info:
   platforms:
     - name: Ubuntu
       versions:
+        - trusty
         - xenial
+        - artful
+        - bionic
 
   galaxy_tags:
     - prometheus
