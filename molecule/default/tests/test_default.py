@@ -19,3 +19,9 @@ def test_node_exporter_running(host):
 
     assert s.is_running
     assert s.is_enabled
+
+
+def test_metrics_endpoint(host):
+    metrics = host.check_output('curl -sfL http://localhost:9100/metrics')
+
+    assert 'go_gc_duration_seconds_sum' in metrics
