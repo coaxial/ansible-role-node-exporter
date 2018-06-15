@@ -6,7 +6,7 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: ubuntu1404
+  - name: ubuntuTrusty
     image: solita/ubuntu-systemd:14.04
     privileged: true
     command: /sbin/init
@@ -14,7 +14,7 @@ platforms:
       - SYS_ADMIN
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
-  - name: ubuntu1604
+  - name: ubuntuXenial
     image: solita/ubuntu-systemd:16.04
     privileged: true
     command: /sbin/init
@@ -22,7 +22,7 @@ platforms:
       - SYS_ADMIN
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
-  - name: ubuntu1710
+  - name: ubuntuArtful
     image: solita/ubuntu-systemd:17.10
     privileged: true
     command: /sbin/init
@@ -30,7 +30,7 @@ platforms:
       - SYS_ADMIN
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
-  - name: ubuntu1804
+  - name: ubuntuBionic
     image: solita/ubuntu-systemd:18.04
     privileged: true
     command: /sbin/init
