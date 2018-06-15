@@ -1,2 +1,5 @@
 ---
-# defaults file for ansible-role-node-exporter
+# cf. https://prometheus.io/download/#node_exporter
+ne__pkg_checksum: "sha256:e92a601a5ef4f77cce967266b488a978711dabc527a720bea26505cba426c029"
+ne__pkg_version: 0.16.0
+ne__exporter_dir: /opt/prometheus/exporters

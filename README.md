@@ -1,48 +1,41 @@
-Role Name
+node-exporter Ansible role
 =========
 
-A brief description of the role goes here.
+Install Prometheus' node_exporter and runs it as a service (Ubuntu/Debian only)
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should
-be mentioned here. For instance, if the role uses the EC2 module, it may be a
-good idea to mention in this section that the boto package is required.
+- Python 2 on host (see the [raw-python role](https://github.com/coaxial/ansible-role-raw-python) to set it up)
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including
-any variables that are in defaults/main.yml, vars/main.yml, and any variables
-that can/should be set via parameters to the role. Any variables that are read
-from other roles and/or the global scope (ie. hostvars, group vars, etc.) should
-be mentioned here as well.
+Name | Default | Purpose | Possible values
+---|---|---|---
+`ne__pkg_checksum` | SHA256 sum for version | Verify the downloaded archive | any valid checksum as per the [`get_url` module](https://docs.ansible.com/ansible/2.5/modules/get_url_module.html?highlight=get_url).
+`ne__pkg_version` | cf. [here](defaults/main.yml) | Select which node_exporter version to install | string like `0.0.0`
+`ne__exporter_dir` | `/opt/prometheus/exporters` | Where to put the node_exporter binary | Any valid path (will be created if it doesn't exist)
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in
-regards to parameters that may need to be set for other roles, or variables that
-are used from other roles.
+N/A
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables
-passed in as parameters) is always nice for users too:
-
-    - hosts: servers
+    ---
+    - hosts: all
       roles:
-         - { role: ansible-role-node-exporter, x: 42 }
+        - coaxial.node-exporter
 
 License
 -------
 
-BSD
+MIT
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a
-website (HTML is not allowed).
+coaxial<[64b.it](https://64b.it)>

@@ -1,2 +1,39 @@
 ---
-# tasks file for ansible-role-node-exporter
+- name: Download node exporter
+  get_url:
+    checksum: "{{ ne__pkg_checksum }}"
+    dest: /tmp/node_exporter.tar.gz
+    url: https://github.com/prometheus/node_exporter/releases/download/v{{ ne__pkg_version }}/node_exporter-{{ ne__pkg_version }}.linux-amd64.tar.gz
+  notify:
+    - install service
+    - cleanup
+
+- name: Create destination dir
+  file:
+    path: "{{ ne__exporter_dir }}"
+    state: directory
+
+- name: Extract node exporter
+  unarchive:
+    src: /tmp/node_exporter.tar.gz
+    remote_src: true
+    dest: /tmp
+    creates: "/tmp/node_exporter-{{ ne__pkg_version }}.linux-amd64"
+    owner: root
+    group: root
+    mode: '0755'
+  notify: cleanup
+
+- name: Copy node exporter in place
+  copy:
+    src: "/tmp/node_exporter-{{ ne__pkg_version }}.linux-amd64/node_exporter"
+    remote_src: true
+    dest: "{{ ne__exporter_dir }}"
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Create service user
+  user:
+    name: node_exporter
+    system: true
