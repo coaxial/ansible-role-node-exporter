@@ -6,24 +6,8 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: ubuntuTrusty
-    image: solita/ubuntu-systemd:14.04
-    privileged: true
-    command: /sbin/init
-    capabilities:
-      - SYS_ADMIN
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
   - name: ubuntuXenial
     image: solita/ubuntu-systemd:16.04
-    privileged: true
-    command: /sbin/init
-    capabilities:
-      - SYS_ADMIN
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-  - name: ubuntuArtful
-    image: solita/ubuntu-systemd:17.10
     privileged: true
     command: /sbin/init
     capabilities:
