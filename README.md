@@ -1,6 +1,8 @@
 node-exporter Ansible role
 =========
 
+[![Build Status](https://travis-ci.org/coaxial/ansible-role-node-exporter.svg?branch=master)](https://travis-ci.org/coaxial/ansible-role-node-exporter)
+
 Install Prometheus' node_exporter and runs it as a service (Ubuntu/Debian only)
 
 Requirements
