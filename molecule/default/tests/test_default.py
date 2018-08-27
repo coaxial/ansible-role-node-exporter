@@ -22,7 +22,13 @@ def test_node_exporter_running(host):
 
 
 def test_metrics_endpoint(host):
-    host.run('sudo apt install curl -yq')
-    metrics = host.check_output('curl -sfL http://localhost:9100/metrics')
+    # Install curl because Debian doesn't come with either curl or wget
+    host.ansible('package', 'name=curl state=present', check=False)
+
+    metrics = host.check_output('curl -sfL http://localhost:9100/metrics || ' +
+                                'wget -q http://localhost:9100/metrics -O -')
+
+    # And remove it when we're done
+    host.ansible('package', 'name=curl state=absent', check=False)
 
     assert 'go_gc_duration_seconds_sum' in metrics

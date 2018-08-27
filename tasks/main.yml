@@ -1,9 +1,33 @@
 ---
+- name: Check current node_exporter version
+  shell: |
+    if [ -e {{ ne__exporter_dir }}/node_exporter ]; then
+      {{ ne__exporter_dir }}/node_exporter --version 2>&1 | sed -n 's/.*version \([0-9\.]\{1,\}\).*/\\1/p';
+    else
+      echo '0.0.0';
+    fi
+  register: ne__current_version_cmd
+  changed_when: false
+
+- name: Set current node_exporter version as fact
+  set_fact:
+    ne__current_version: "{{ ne__current_version_cmd.stdout }}"
+
+- debug:
+    msg: "{{ ne__current_version }}"
+
+- name: Ensure certificates bundle is installed
+  # Necessary for get_url to validate SSL certificate
+  package:
+    name: ca-certificates
+    state: present
+
 - name: Download node exporter
   get_url:
     checksum: "{{ ne__pkg_checksum }}"
     dest: /tmp/node_exporter.tar.gz
     url: https://github.com/prometheus/node_exporter/releases/download/v{{ ne__pkg_version }}/node_exporter-{{ ne__pkg_version }}.linux-amd64.tar.gz
+  when: ne__current_version is version(ne__pkg_version, '<')
   notify:
     - install service
     - cleanup
@@ -12,6 +36,7 @@
   file:
     path: "{{ ne__exporter_dir }}"
     state: directory
+  when: ne__current_version is version(ne__pkg_version, '<')
 
 - name: Extract node exporter
   unarchive:
@@ -22,6 +47,7 @@
     owner: root
     group: root
     mode: '0755'
+  when: ne__current_version is version(ne__pkg_version, '<')
   notify: cleanup
 
 - name: Copy node exporter in place
@@ -32,8 +58,10 @@
     owner: root
     group: root
     mode: '0755'
+  when: ne__current_version is version(ne__pkg_version, '<')
 
 - name: Create service user
   user:
     name: node_exporter
     system: true
+  when: ne__current_version is version(ne__pkg_version, '<')

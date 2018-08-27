@@ -1,20 +1,24 @@
 ---
 galaxy_info:
   author: Coaxial
-  description: Install and run Prometheus node exporter as a service
+  description: Install Prometheus' node_exporter and run it as a service.
   company: 64b.it
+  role_name: node-exporter
   license: MIT
-  min_ansible_version: 1.2
+  min_ansible_version: 2.5
   platforms:
-    - name: Ubuntu
+    - name: ubuntu
       versions:
-        - trusty
         - xenial
-        - artful
         - bionic
-
+    - name: debian
+      versions:
+        - jessie
+        - stretch
+        - buster
   galaxy_tags:
     - prometheus
+    - system
     - monitoring
 
-dependencies: []
+  dependencies: []

@@ -2,4 +2,4 @@
 - name: Converge
   hosts: all
   roles:
-    - role: ansible-role-node-exporter
+    - name: ansible-role-node-exporter
