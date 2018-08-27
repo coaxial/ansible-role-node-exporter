@@ -13,9 +13,6 @@
   set_fact:
     ne__current_version: "{{ ne__current_version_cmd.stdout }}"
 
-- debug:
-    msg: "{{ ne__current_version }}"
-
 - name: Ensure certificates bundle is installed
   # Necessary for get_url to validate SSL certificate
   package:
