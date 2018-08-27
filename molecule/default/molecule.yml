@@ -10,8 +10,6 @@ platforms:
     alias: ubuntu/xenial
   - name: ubuntu-bionic
     alias: ubuntu/bionic
-  - name: debian-jessie
-    alias: debian/jessie
   - name: debian-stretch
     alias: debian/stretch
   - name: debian-buster
