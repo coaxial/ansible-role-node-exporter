@@ -9,11 +9,10 @@
     mode: '0522'
 
 - name: restart service
-  systemd:
-    daemon_reload: true
+  service:
     name: node_exporter
     enabled: true
-    state: started
+    state: restarted
   listen: install service
 
 - name: cleanup
