@@ -18,3 +18,13 @@ sudo sed -i 's/^\(root:[0-9]\{1,\}\):.*/\1:1000000000/' /etc/subuid
 sudo sed -i 's/^\(lxd:[0-9]\{1,\}\):.*/\1:1000000000/' /etc/subgid
 sudo sed -i 's/^\(root:[0-9]\{1,\}\):.*/\1:1000000000/' /etc/subgid
 sudo systemctl restart lxd
+
+# Travis is flaky and needs a longer timeout for jessie
+sudo mkdir -p /etc/ansible
+sudo chmod 666 /etc/ansible
+sudo tee -a /etc/ansible/ansible.cfg <<CONFIG
+[defaults]
+gather_timeout = 300
+CONFIG
+
+ansible --version
