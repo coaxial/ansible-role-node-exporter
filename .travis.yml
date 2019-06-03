@@ -4,7 +4,7 @@ jobs:
     - &test
       stage: test
       language: python
-      python: "2.7"
+      python: "3.7"
       cache: pip
       dist: xenial
       sudo: required
