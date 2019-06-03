@@ -2,7 +2,7 @@
 - name: Check current node_exporter version
   shell: |
     if [ -e {{ ne__exporter_dir }}/node_exporter ]; then
-      {{ ne__exporter_dir }}/node_exporter --version 2>&1 | sed -n 's/.*version \([0-9\.]\{1,\}\).*/\\1/p';
+      {{ ne__exporter_dir }}/node_exporter --version 2>&1 | sed -n 's/.*version \([0-9\.]\{1,\}\).*/\1/p';
     else
       echo '0.0.0';
     fi
