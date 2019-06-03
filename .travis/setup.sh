@@ -8,8 +8,9 @@ sudo lxd --version
 sudo lxd waitready
 sudo lxd init --auto
 
-pip install ansible
-pip install molecule
+# waiting for https://github.com/ansible/molecule/issues/2083
+pip install ansible==2.7.11
+pip install molecule==2.19
 
 # Enable nesting without privileged containers,
 # cf. https://stgraber.org/2017/06/15/custom-user-mappings-in-lxd-containers/
